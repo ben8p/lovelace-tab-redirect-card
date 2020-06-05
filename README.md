@@ -14,9 +14,11 @@ For instance:
 ### Installation
 Use [HACS](https://hacs.xyz/) or follow this [guide](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
 
+```
 resources:
-  url: /local/config-template-card.js
+  url: /local/tab-redirect-card.js
   type: module
+```
 
 ### Configuration example:
 Note: `redirect_to_tab` starts at 0 (first tab)  
