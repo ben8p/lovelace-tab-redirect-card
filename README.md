@@ -30,7 +30,7 @@ redirect:
  - user: 'foo'
    entity_id: 'input.binary.is_home'
    entity_state: 'on'
-   redirect_to_tab: 1
+   redirect_to_tab_index: 1
 ```
 
  - Redirect user "foo" to the 2nd tab if `input.binary.is_home` is `on`  
@@ -45,5 +45,5 @@ redirect:
  - user: 'bar'
    entity_id: 'input.binary.is_home'
    entity_state: 'on'
-   redirect_to_tab: 2
+   redirect_to_tab_index: 2
 ```
