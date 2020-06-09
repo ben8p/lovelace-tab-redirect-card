@@ -1,12 +1,4 @@
 class TabRedirectCard extends HTMLElement {
-	static get styles() {
-		return css`
-		:host {
-			display: none;
-		}
-		`;
-	}
-
 	set hass(hass) {
 		const homeAssistant = document.querySelector('home-assistant');
 		const root = homeAssistant.shadowRoot.querySelector('home-assistant-main').shadowRoot;
@@ -23,6 +15,8 @@ class TabRedirectCard extends HTMLElement {
 		if(isEditing) { return; }
 		const tabs = uiRoot.shadowRoot.querySelector('paper-tabs');
 		const tabList = tabs.querySelectorAll('paper-tab');
+
+		this.style.display = 'none';
 
 		const userConfigs = this.config.redirect.filter((item) => item.user === hass.user.name);
 		userConfigs.forEach((config) => {
