@@ -19,13 +19,27 @@ class TabRedirectCard extends HTMLElement {
 		const userConfigs = this.config.redirect.filter((item) => item.user === hass.user.name);
 		userConfigs.forEach((config) => {
 			const state = hass.states[config.entity_id].state;
-			const key = `${config.user}-${config.entity_id}-${config.entity_state.toString()}`;
-			if(state === config.entity_state && sessionStorage.getItem('TabRedirectCardLastAtoRedirect') !== key) {
+
+			const keyId = `${config.user}-${config.entity_id}`;
+
+			const lastSeenStateKey = `TabRedirectCard-LastSeenState-${keyId}`;
+			const lastRedirectKey = `TabRedirectCard-LastRedirect-${keyId}`;
+
+			// if previous recorded state is different, remove cache
+			if(state !== sessionStorage.getItem(lastSeenStateKey)) {
+				sessionStorage.removeItem(lastRedirectKey);
+			}
+			sessionStorage.setItem(lastSeenStateKey, state);
+
+			// if we should redirect and cache is empty
+			if(state === config.entity_state && !sessionStorage.getItem(lastRedirectKey)) {
+				sessionStorage.setItem(lastRedirectKey, 'true');
 				tabList[config.redirect_to_tab_index].click();
-				sessionStorage.setItem('TabRedirectCardLastAtoRedirect', key);
 			}
 		});
 	}
+
+
 
 	setConfig(config) {
 		if (!config.redirect || !Array.isArray(config.redirect) || config.redirect.length === 0) {
