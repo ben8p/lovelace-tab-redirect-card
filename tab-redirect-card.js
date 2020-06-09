@@ -1,7 +1,10 @@
 class TabRedirectCard extends HTMLElement {
-	constructor() {
-		super();
-		this.style.display = 'none';
+	static get styles() {
+		return css`
+		:host {
+			display: none;
+		}
+		`;
 	}
 
 	set hass(hass) {
