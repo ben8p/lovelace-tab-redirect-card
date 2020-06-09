@@ -44,7 +44,7 @@ class TabRedirectCard extends HTMLElement {
 			if(!redirect.entity_state) {
 				throw new Error('You need to define entity_state');
 			}
-			if(!redirect.redirect_to_tab_index || typeof redirect.redirect_to_tab_index !== 'number' || !Number.isInteger(redirect.redirect_to_tab_index)) {
+			if(redirect.redirect_to_tab_index === undefined || typeof redirect.redirect_to_tab_index !== 'number' || !Number.isInteger(redirect.redirect_to_tab_index)) {
 				throw new Error('You need to define redirect_to_tab_index (integer, starting from 0)');
 			}
 		});
