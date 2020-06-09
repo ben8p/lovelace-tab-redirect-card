@@ -1,4 +1,8 @@
 class TabRedirectCard extends HTMLElement {
+	constructor() {
+		this.style.display = 'none';
+	}
+
 	set hass(hass) {
 		const homeAssistant = document.querySelector('home-assistant');
 		const root = homeAssistant.shadowRoot.querySelector('home-assistant-main').shadowRoot;
