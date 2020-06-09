@@ -1,5 +1,6 @@
 class TabRedirectCard extends HTMLElement {
 	constructor() {
+		super();
 		this.style.display = 'none';
 	}
 
