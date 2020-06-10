@@ -47,3 +47,7 @@ redirect:
    entity_state: 'on'
    redirect_to_tab_index: 2
 ```
+
+### Tips: Panel Mode
+When using panel mode, the redirect card needs to be in the 1st row of each tab otherwise it won't work.  
+If the panel has only one entity, wrap it into an horizontal stack and add the redirect card in the second column.  
