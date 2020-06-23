@@ -1,11 +1,11 @@
 class TabRedirectCard extends HTMLElement {
 	set hass(hass) {
+		this.style.display = 'none';
+		
 		const homeAssistant = document.querySelector('home-assistant');
 		const root = homeAssistant.shadowRoot.querySelector('home-assistant-main').shadowRoot;
 		const sidebarRoot = root.querySelector('ha-sidebar').shadowRoot;
 		const sidebarListbox = sidebarRoot.querySelector('paper-listbox');
-		const overview = sidebarListbox.querySelector('[data-panel="lovelace"]');
-		if(!overview) { return; }
 		const panel = root.querySelector('ha-panel-lovelace')
 		if(!panel) { return; }
 		const uiRoot = panel.shadowRoot.querySelector('hui-root')
@@ -15,8 +15,6 @@ class TabRedirectCard extends HTMLElement {
 		if(isEditing) { return; }
 		const tabs = uiRoot.shadowRoot.querySelector('paper-tabs');
 		const tabList = tabs.querySelectorAll('paper-tab');
-
-		this.style.display = 'none';
 
 		const userConfigs = this.config.redirect.filter((item) => item.user === hass.user.name);
 		userConfigs.forEach((config) => {
