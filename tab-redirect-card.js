@@ -13,7 +13,10 @@ class TabRedirectCard extends HTMLElement {
 		const header = uiRoot.shadowRoot.querySelector('app-header');
 		const isEditing = header.classList.contains('edit-mode');
 		if(isEditing) { return; }
-		const tabs = uiRoot.shadowRoot.querySelector('paper-tabs');
+		let tabs = uiRoot.shadowRoot.querySelector('ha-tabs');
+		if(!tabs) {
+			tabs = uiRoot.shadowRoot.querySelector('paper-tabs');
+		}
 		const tabList = tabs.querySelectorAll('paper-tab');
 
 		const userConfigs = this.config.redirect.filter((item) => item.user === hass.user.name);
