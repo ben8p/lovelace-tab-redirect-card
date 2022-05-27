@@ -1,4 +1,4 @@
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)  
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)  
 
 # tab-redirect-card
 Custom [Lovelace](https://www.home-assistant.io/lovelace) card to use in [Home assistant](https://www.home-assistant.io/) allowing you to redirect a user to certain view based on entity states.  
