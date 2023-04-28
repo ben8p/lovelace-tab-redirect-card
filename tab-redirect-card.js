@@ -10,8 +10,7 @@ class TabRedirectCard extends HTMLElement {
 		if(!panel) { return; }
 		const uiRoot = panel.shadowRoot.querySelector('hui-root')
 		if(!uiRoot) { return; }
-		const header = uiRoot.shadowRoot.querySelector('app-header');
-		const isEditing = header.classList.contains('edit-mode');
+		const isEditing = uiRoot.shadowRoot.querySelector('.edit-mode');
 		if(isEditing) { return; }
 		let tabs = uiRoot.shadowRoot.querySelector('ha-tabs');
 		if(!tabs) {
