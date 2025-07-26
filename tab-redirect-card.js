@@ -32,7 +32,7 @@ class TabRedirectCard extends HTMLElement {
 			sessionStorage.setItem(lastSeenStateKey, state);
 
 			// if we should redirect and cache is empty
-			if(state === config.entity_state && (!config.force && !sessionStorage.getItem(lastRedirectKey))) {
+			if(state === config.entity_state && (config.force === true || !sessionStorage.getItem(lastRedirectKey))) {
 				sessionStorage.setItem(lastRedirectKey, 'true');
 				tabList[config.redirect_to_tab_index].click();
 			}
