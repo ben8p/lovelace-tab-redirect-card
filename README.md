@@ -48,6 +48,27 @@ redirect:
    redirect_to_tab_index: 2
 ```
 
+ - Redirect every user by not setting the user option:
+```yaml
+type: 'custom:tab-redirect-card'
+redirect:
+ - entity_id: 'input.binary.is_home'
+   entity_state: 'on'
+   redirect_to_tab_index: 1
+```
+
+ - Always redirect with the force option.
+   This will ignore the cache and will always redirect if the card is rendered.
+```yaml
+type: 'custom:tab-redirect-card'
+redirect:
+ - user: 'foo'
+   entity_id: 'input.binary.is_home'
+   entity_state: 'on'
+   redirect_to_tab_index: 1
+   force: true
+```
+
 ### Tips: Panel Mode
 When using panel mode, the redirect card needs to be in the 1st row of each tab otherwise it won't work.  
 If the panel has only one entity, wrap it into an horizontal stack and add the redirect card in the second column.  
