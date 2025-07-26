@@ -16,11 +16,11 @@ class TabRedirectCard extends HTMLElement {
 		let tabs = uiRoot.shadowRoot.querySelector('sl-tab-group');
 		const tabList = tabs.tabs;
 
-		const userConfigs = this.config.redirect.filter((item) => item.user === hass.user.name);
+		const userConfigs = this.config.redirect.filter((item) => !item.user || item.user === hass.user.name);
 		userConfigs.forEach((config) => {
 			const state = hass.states[config.entity_id].state;
 
-			const keyId = `${config.user}-${config.entity_id}`;
+			const keyId = `${config.user ?? "any"}-${config.entity_id}`;
 
 			const lastSeenStateKey = `TabRedirectCard-LastSeenState-${keyId}`;
 			const lastRedirectKey = `TabRedirectCard-LastRedirect-${keyId}`;
@@ -32,7 +32,7 @@ class TabRedirectCard extends HTMLElement {
 			sessionStorage.setItem(lastSeenStateKey, state);
 
 			// if we should redirect and cache is empty
-			if(state === config.entity_state && !sessionStorage.getItem(lastRedirectKey)) {
+			if(state === config.entity_state && (config.force === true || !sessionStorage.getItem(lastRedirectKey))) {
 				sessionStorage.setItem(lastRedirectKey, 'true');
 				tabList[config.redirect_to_tab_index].click();
 			}
@@ -49,8 +49,11 @@ class TabRedirectCard extends HTMLElement {
 			if(!redirect) {
 				throw new Error('You need to define a redirect (array)');
 			}
-			if(!redirect.user || typeof redirect.user !== 'string') {
-				throw new Error('You need to define user (string)');
+			if(redirect.user && typeof redirect.user !== 'string') {
+				throw new Error('The type of user is not string');
+			}
+			if(redirect.force && typeof redirect.force !== 'boolean') {
+				throw new Error('The type of force is not boolean');
 			}
 			if(!redirect.entity_id || typeof redirect.entity_id !== 'string') {
 				throw new Error('You need to define entity_id (string)');
