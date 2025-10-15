@@ -12,8 +12,8 @@ class TabRedirectCard extends HTMLElement {
 		if(!uiRoot) { return; }
 		const isEditing = uiRoot.shadowRoot.querySelector('.edit-mode');
 		if(isEditing) { return; }
-
-		let tabs = uiRoot.shadowRoot.querySelector('sl-tab-group');
+		
+		const tabs = uiRoot.shadowRoot.querySelector('ha-tab-group');
 		const tabList = tabs.tabs;
 
 		const userConfigs = this.config.redirect.filter((item) => !item.user || item.user === hass.user.name);
